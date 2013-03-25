@@ -22,7 +22,7 @@ long_description = '\n'.join((
 
 setup(
     name='pelican-microdata',
-    version=__import__('midrodata').__version__,
+    version=__import__('microdata').__version__,
     description=__import__('microdata').__description__,
     long_description=long_description,
     url='https://github.com/noirbizarre/pelican-microdata',
