@@ -4,7 +4,7 @@ Microdata plugin for Pelican
 .. image:: https://secure.travis-ci.org/noirbizarre/pelican-microdata.png
    :target: http://travis-ci.org/noirbizarre/pelican-microdata
 
-Microdata semantic markups support for Pelican Blog Generator
+`Microdata`_ semantic markups support for `Pelican`_ static blog generator.
 
 Installation
 ------------
@@ -39,19 +39,28 @@ Once loaded you have access to microdata rst directives.
 Directives
 ~~~~~~~~~~
 
-.. code-block:: ReST
+Microdata plugin provides two directives:
 
-    .. itemscope:: <Schema type>
-        :tag: element type (default: div)
+- ``itemscope``, a block directive allowing to declare an itemscope block:
 
-        Nested content
+    .. code-block:: ReST
+
+        .. itemscope:: <Schema type>
+            :tag: element type (default: div)
+            :itemprop: optionnal itemprop attribute
+
+            Nested content
+
+- ``itemprop``, an inline directive/role allowing to annotate some text with an itemprop attribute.
+
+    .. code-block:: ReST
+
+        :itemprop:`Displayed text <itemprop name>`
+        :itemprop:`Displayed text <itemprop name:http://some.url/>`
 
 
-    :itemprop:`Displayed test <itemprop name>`
-
-
-Examples
-~~~~~~~~
+Example
+~~~~~~~
 
 This reStructuredText document:
 
@@ -80,3 +89,7 @@ will result in:
         I live in Albuquerque, NM and work as an <span itemprop="title">engineer</span>
         at <span itemprop="affiliation">ACME Corp</span>.
     </p>
+
+
+.. _Microdata: http://schema.org/
+.. _Pelican: http://getpelican.com/
