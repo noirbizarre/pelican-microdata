@@ -1,6 +1,9 @@
 Microdata plugin for Pelican
 ============================
 
+.. image:: https://secure.travis-ci.org/noirbizarre/pelican-microdata.png
+   :target: http://travis-ci.org/noirbizarre/pelican-microdata
+
 Microdata semantic markups support for Pelican Blog Generator
 
 Installation
