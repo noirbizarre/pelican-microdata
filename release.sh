@@ -4,7 +4,7 @@
 # Bump version and tag it
 # Build a source distrbution and upload on PyPI
 # Update version for new develpoment cycle
-VERSION_FILE=djangojs/__init__.py
+VERSION_FILE=microdata/__init__.py
 CHANGELOG_FILE=CHANGELOG.rst
 README_FILE=README.rst
 
