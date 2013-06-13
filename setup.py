@@ -33,6 +33,7 @@ setup(
     include_package_data=True,
     install_requires=['pelican'],
     license='LGPL',
+    use_2to3=True,
     classifiers=[
         "Development Status :: 4 - Beta",
         "Programming Language :: Python",
@@ -41,6 +42,7 @@ setup(
         "Intended Audience :: Developers",
         "Topic :: System :: Software Distribution",
         "Programming Language :: Python",
+        "Programming Language :: Python :: 3",
         "Topic :: Software Development :: Libraries :: Python Modules",
         'License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)',
     ],

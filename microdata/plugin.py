@@ -52,6 +52,7 @@ will result in:
 from __future__ import unicode_literals
 
 import re
+import six
 
 from docutils import nodes
 from docutils.parsers.rst import directives, Directive, roles
@@ -130,11 +131,17 @@ def depart_ItemScope(self, node):
     self.body.append(node.endtag())
 
 
+def as_method(func):
+    if six.PY3:
+        return MethodType(func, PelicanHTMLTranslator)
+    else:
+        return MethodType(func, None, PelicanHTMLTranslator)
+
 def register():
     directives.register_directive('itemscope', ItemScopeDirective)
     roles.register_canonical_role('itemprop', itemprop_role)
 
-    PelicanHTMLTranslator.visit_ItemProp = MethodType(visit_ItemProp, None, PelicanHTMLTranslator)
-    PelicanHTMLTranslator.depart_ItemProp = MethodType(depart_ItemProp, None, PelicanHTMLTranslator)
-    PelicanHTMLTranslator.visit_ItemScope = MethodType(visit_ItemScope, None, PelicanHTMLTranslator)
-    PelicanHTMLTranslator.depart_ItemScope = MethodType(depart_ItemScope, None, PelicanHTMLTranslator)
+    PelicanHTMLTranslator.visit_ItemProp = as_method(visit_ItemProp)
+    PelicanHTMLTranslator.depart_ItemProp = as_method(depart_ItemProp)
+    PelicanHTMLTranslator.visit_ItemScope = as_method(visit_ItemScope)
+    PelicanHTMLTranslator.depart_ItemScope = as_method(depart_ItemScope)
