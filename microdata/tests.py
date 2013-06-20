@@ -1,16 +1,13 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
 import unittest
 
 from os.path import dirname, join
 
 from pelican import readers
 
-
-CONTENT_PATH = dirname(__file__)
-
-
-def _path(*args):
-    return join(CONTENT_PATH, *args)
+RESOURCES_PATH = join(dirname(__file__), 'test-resources')
 
 
 class TestMicrodata(unittest.TestCase):
@@ -21,7 +18,8 @@ class TestMicrodata(unittest.TestCase):
         microdata.register()
 
     def assert_rst_equal(self, rstfile, expected):
-        content, _ = readers.read_file(_path(rstfile))
+        filename = join(RESOURCES_PATH, rstfile)
+        content, _ = readers.read_file(filename)
         self.assertEqual(content.strip().replace('\n', ''), expected.strip())
 
     def test_itemprop(self):
