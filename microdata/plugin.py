@@ -132,6 +132,7 @@ def visit_ItemScope(self, node):
 def depart_ItemScope(self, node):
     self.body.append(node.endtag())
 
+
 def visit_paragraph(self, node):
     if self.should_be_compact_paragraph(node) or (isinstance(node.parent, ItemScope) and node.parent.tagname == 'p'):
         self.context.append('')
@@ -139,11 +140,13 @@ def visit_paragraph(self, node):
         self.body.append(self.starttag(node, 'p', ''))
         self.context.append('</p>\n')
 
+
 def as_method(func):
     if six.PY3:
         return MethodType(func, PelicanHTMLTranslator)
     else:
         return MethodType(func, None, PelicanHTMLTranslator)
+
 
 def register():
     directives.register_directive('itemscope', ItemScopeDirective)
