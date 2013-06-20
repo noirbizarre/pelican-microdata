@@ -81,7 +81,7 @@ def itemprop_role(role, rawtext, text, lineno, inliner, options={}, content=[]):
 
 
 class ItemScope(nodes.Element):
-    def __init__(self, tagname, itemtype, itemprop=None):
+    def __init__(self, tagname, itemtype, itemprop=None, compact=False):
         kwargs = {
             'itemscope': None,
             'itemtype': "http://data-vocabulary.org/%s" % itemtype,
@@ -90,6 +90,7 @@ class ItemScope(nodes.Element):
             kwargs['itemprop'] = itemprop
         super(ItemScope, self).__init__('', **kwargs)
         self.tagname = tagname
+        self.compact = compact
 
 
 class ItemScopeDirective(Directive):
@@ -98,6 +99,7 @@ class ItemScopeDirective(Directive):
     option_spec = {
         'tag': directives.unchanged,
         'itemprop': directives.unchanged,
+        'compact': directives.unchanged,
     }
 
     def run(self):
@@ -105,7 +107,8 @@ class ItemScopeDirective(Directive):
         itemtype = self.arguments[0]
         tag = self.options.get('tag', 'div')
         itemprop = self.options.get('itemprop', None)
-        node = ItemScope(tag, itemtype, itemprop)
+        compact = 'compact' in self.options
+        node = ItemScope(tag, itemtype, itemprop, compact)
         self.add_name(node)
         self.state.nested_parse(self.content, self.content_offset, node)
         return [node]
@@ -134,7 +137,7 @@ def depart_ItemScope(self, node):
 
 
 def visit_paragraph(self, node):
-    if self.should_be_compact_paragraph(node) or (isinstance(node.parent, ItemScope) and node.parent.tagname == 'p'):
+    if self.should_be_compact_paragraph(node) or (isinstance(node.parent, ItemScope) and node.parent.compact):
         self.context.append('')
     else:
         self.body.append(self.starttag(node, 'p', ''))
@@ -157,6 +160,6 @@ def register():
     PelicanHTMLTranslator.visit_ItemScope = as_method(visit_ItemScope)
     PelicanHTMLTranslator.depart_ItemScope = as_method(depart_ItemScope)
 
-    # override paragraph to avoid nested <p> tags.
+    # handle compact parameter
     # TODO: find a cleaner way to handle this case
     PelicanHTMLTranslator.visit_paragraph = as_method(visit_paragraph)

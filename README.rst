@@ -48,6 +48,7 @@ Microdata plugin provides two directives:
         .. itemscope:: <Schema type>
             :tag: element type (default: div)
             :itemprop: optionnal itemprop attribute
+            :compact: optionnal
 
             Nested content
 

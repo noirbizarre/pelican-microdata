@@ -5,7 +5,7 @@ Current
 -------
 
 - Start working on Python 3 compatibility
-- Fix nested ``<p>`` tags handling.
+- Added ``compact`` option to ``ItemScope`` block
 
 
 0.1 (2013-03-25)
