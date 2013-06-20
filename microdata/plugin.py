@@ -90,7 +90,7 @@ class ItemScope(nodes.Element):
             kwargs['itemprop'] = itemprop
         super(ItemScope, self).__init__('', **kwargs)
         self.tagname = tagname
-        self.compact = compact
+        self.compact =  tagname == 'p' or compact
 
 
 class ItemScopeDirective(Directive):
