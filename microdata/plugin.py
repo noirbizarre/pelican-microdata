@@ -101,10 +101,12 @@ class ItemScopeDirective(Directive):
     }
 
     def run(self):
+        self.assert_has_content()
         itemtype = self.arguments[0]
         tag = self.options.get('tag', 'div')
         itemprop = self.options.get('itemprop', None)
         node = ItemScope(tag, itemtype, itemprop)
+        self.add_name(node)
         self.state.nested_parse(self.content, self.content_offset, node)
         return [node]
 
@@ -130,6 +132,12 @@ def visit_ItemScope(self, node):
 def depart_ItemScope(self, node):
     self.body.append(node.endtag())
 
+def visit_paragraph(self, node):
+    if self.should_be_compact_paragraph(node) or (isinstance(node.parent, ItemScope) and node.parent.tagname == 'p'):
+        self.context.append('')
+    else:
+        self.body.append(self.starttag(node, 'p', ''))
+        self.context.append('</p>\n')
 
 def as_method(func):
     if six.PY3:
@@ -145,3 +153,7 @@ def register():
     PelicanHTMLTranslator.depart_ItemProp = as_method(depart_ItemProp)
     PelicanHTMLTranslator.visit_ItemScope = as_method(visit_ItemScope)
     PelicanHTMLTranslator.depart_ItemScope = as_method(depart_ItemScope)
+
+    # override paragraph to avoid nested <p> tags.
+    # TODO: find a cleaner way to handle this case
+    PelicanHTMLTranslator.visit_paragraph = as_method(visit_paragraph)

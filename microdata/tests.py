@@ -52,7 +52,7 @@ class TestMicrodata(unittest.TestCase):
         )
         self.assert_rst_equal('microdata_itemscope_tag.rst', expected)
 
-    def test_nested_scode(self):
+    def test_nested_scope(self):
         expected = (
             '<div itemscope itemtype="http://data-vocabulary.org/Person">'
             '<p>'
@@ -64,3 +64,14 @@ class TestMicrodata(unittest.TestCase):
             '</div>'
         )
         self.assert_rst_equal('microdata_itemscope_nested.rst', expected)
+
+    def test_nested_scope_p(self):
+        expected = (
+            '<p itemscope itemtype="http://data-vocabulary.org/Person">'
+            'My name is <span itemprop="name">John Doe</span>'
+            '<span itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">'
+            'My name is <span itemprop="name">John Doe</span>'
+            '</span>'
+            '</p>'
+        )
+        self.assert_rst_equal('microdata_itemscope_nested_p.rst', expected)
