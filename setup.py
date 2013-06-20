@@ -4,14 +4,25 @@ import re
 from setuptools import setup, find_packages
 
 
+PYPI_RST_FILTERS = (
+    # Replace code-blocks
+    (r'\.\.\s? code-block::\s*(\w|\+)+',  '::'),
+    # Remove travis ci badge
+    (r'.*travis-ci\.org/.*', ''),
+)
+
+
 def rst(filename):
     '''
     Load rst file and sanitize it for PyPI.
-    Remove unsupported PyPI tags:
+    Remove unsupported github tags:
      - code-block directive
+     - travis ci build badge
     '''
     content = open(filename).read()
-    return re.sub(r'\.\.\s? code-block::\s*(\w|\+)+', '::', content)
+    for regex, replacement in PYPI_RST_FILTERS:
+        content = re.sub(regex, replacement, content)
+    return content
 
 
 long_description = '\n'.join((
@@ -33,7 +44,7 @@ setup(
     include_package_data=True,
     install_requires=['pelican'],
     license='LGPL',
-    use_2to3=True,
+    # use_2to3=True,
     classifiers=[
         "Development Status :: 4 - Beta",
         "Programming Language :: Python",
@@ -42,7 +53,7 @@ setup(
         "Intended Audience :: Developers",
         "Topic :: System :: Software Distribution",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 3",
+        # "Programming Language :: Python :: 3",
         "Topic :: Software Development :: Libraries :: Python Modules",
         'License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)',
     ],
