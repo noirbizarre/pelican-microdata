@@ -6,6 +6,6 @@ install:
   - pip install . --use-mirrors
   - pip install python-coveralls --use-mirrors
 script:
-  - coverage run -m unittest discover
+  - coverage run --rcfile=coverage.rc -m unittest discover
 after_success:
   - coveralls -c coverage.rc
