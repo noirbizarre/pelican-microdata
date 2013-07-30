@@ -3,6 +3,12 @@ Microdata plugin for Pelican
 
 .. image:: https://secure.travis-ci.org/noirbizarre/pelican-microdata.png
    :target: http://travis-ci.org/noirbizarre/pelican-microdata
+.. image:: https://coveralls.io/repos/noirbizarre/pelican-microdata/badge.png?branch=master
+    :target: https://coveralls.io/r/noirbizarre/pelican-microdata
+.. image:: https://pypip.in/v/pelican-microdata/badge.png
+    :target: https://crate.io/packages/pelican-microdata
+.. image:: https://pypip.in/d/pelican-microdata/badge.png
+    :target: https://crate.io/packages/pelican-microdata
 
 `Microdata`_ semantic markups support for `Pelican`_ static blog generator.
 
