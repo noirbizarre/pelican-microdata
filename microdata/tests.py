@@ -20,7 +20,7 @@ class TestMicrodata(unittest.TestCase):
 
     def assert_rst_equal(self, rstfile, expected):
         reader = Readers(settings=DEFAULT_CONFIG)
-        content = reader.read_file(base_path=RESOURCES_PATH, path=rstfile)
+        content = reader.read_file(base_path=RESOURCES_PATH, path=rstfile).content
         self.assertEqual(content.strip().replace('\n', ''), expected.strip())
 
     def test_itemprop(self):

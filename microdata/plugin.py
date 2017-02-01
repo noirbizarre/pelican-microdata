@@ -57,7 +57,6 @@ import six
 from docutils import nodes
 from docutils.parsers.rst import directives, Directive, roles
 from pelican.readers import PelicanHTMLTranslator
-from types import MethodType
 
 
 RE_ROLE = re.compile(r'(?P<value>.+?)\s*\<(?P<name>.+)\>')
@@ -90,7 +89,7 @@ class ItemScope(nodes.Element):
             kwargs['itemprop'] = itemprop
         super(ItemScope, self).__init__('', **kwargs)
         self.tagname = tagname
-        self.compact =  tagname == 'p' or compact
+        self.compact = tagname == 'p' or compact
 
 
 class ItemScopeDirective(Directive):
@@ -115,6 +114,7 @@ class ItemScopeDirective(Directive):
 
 
 def visit_ItemProp(self, node):
+    print(dir(self))
     if node['href']:
         self.body.append(self.starttag(node, 'a', '', itemprop=node['name'], href=node['href']))
     else:
@@ -145,10 +145,7 @@ def visit_paragraph(self, node):
 
 
 def as_method(func):
-    if six.PY3:
-        return MethodType(func, PelicanHTMLTranslator)
-    else:
-        return MethodType(func, None, PelicanHTMLTranslator)
+    return six.create_unbound_method(func, PelicanHTMLTranslator)
 
 
 def register():
