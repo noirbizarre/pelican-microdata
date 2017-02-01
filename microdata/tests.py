@@ -3,12 +3,18 @@ from __future__ import unicode_literals
 
 import unittest
 
+from lxml import html
+
 from os.path import dirname, join
 
 from pelican.readers import Readers
 from pelican.settings import DEFAULT_CONFIG
 
 RESOURCES_PATH = join(dirname(__file__), 'test-resources')
+
+
+def normalize(text):
+    return html.tostring(html.fromstring(text), pretty_print=True)
 
 
 class TestMicrodata(unittest.TestCase):
@@ -21,7 +27,7 @@ class TestMicrodata(unittest.TestCase):
     def assert_rst_equal(self, rstfile, expected):
         reader = Readers(settings=DEFAULT_CONFIG)
         content = reader.read_file(base_path=RESOURCES_PATH, path=rstfile).content
-        self.assertEqual(content.strip().replace('\n', ''), expected.strip())
+        self.assertEqual(normalize(content), normalize(expected))
 
     def test_itemprop(self):
         expected = (

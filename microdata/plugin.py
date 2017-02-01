@@ -114,7 +114,6 @@ class ItemScopeDirective(Directive):
 
 
 def visit_ItemProp(self, node):
-    print(dir(self))
     if node['href']:
         self.body.append(self.starttag(node, 'a', '', itemprop=node['name'], href=node['href']))
     else:
@@ -129,7 +128,8 @@ def depart_ItemProp(self, node):
 
 
 def visit_ItemScope(self, node):
-    self.body.append(node.starttag())
+    tag = node.starttag().replace('itemscope="True"', 'itemscope')
+    self.body.append(tag)
 
 
 def depart_ItemScope(self, node):
@@ -141,7 +141,7 @@ def visit_paragraph(self, node):
         self.context.append('')
     else:
         self.body.append(self.starttag(node, 'p', ''))
-        self.context.append('</p>\n')
+        self.context.append('</p>')
 
 
 def as_method(func):

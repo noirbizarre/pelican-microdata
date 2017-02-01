@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 import io
 import re
-import sys
 from setuptools import setup, find_packages
 
 
@@ -37,6 +36,8 @@ long_description = '\n'.join((
     ''
 ))
 
+tests_require = ['lxml']
+
 setup(
     name='pelican-microdata',
     version=__import__('microdata').__version__,
@@ -49,7 +50,8 @@ setup(
     include_package_data=True,
     install_requires=['pelican>=3.7.0'],
     license='LGPL',
-    # use_2to3=True,
+    tests_require=tests_require,
+    extras_require={'test': tests_require},
     classifiers=[
         "Development Status :: 4 - Beta",
         "Programming Language :: Python",
