@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import io
 import re
+import sys
 from setuptools import setup, find_packages
 
 
@@ -23,7 +25,7 @@ def rst(filename):
      - code-block directive
      - travis ci build badge
     '''
-    content = open(filename).read()
+    content = io.open(filename).read()
     for regex, replacement in PYPI_RST_FILTERS:
         content = re.sub(regex, replacement, content)
     return content
@@ -41,12 +43,11 @@ setup(
     description=__import__('microdata').__description__,
     long_description=long_description,
     url='https://github.com/noirbizarre/pelican-microdata',
-    download_url='http://pypi.python.org/pypi/pelican-microdata',
     author='Axel Haustant',
     author_email='noirbizarre+pelican@gmail.com',
     packages=find_packages(),
     include_package_data=True,
-    install_requires=['pelican'],
+    install_requires=['pelican>=3.7.0'],
     license='LGPL',
     # use_2to3=True,
     classifiers=[
@@ -57,7 +58,12 @@ setup(
         "Intended Audience :: Developers",
         "Topic :: System :: Software Distribution",
         "Programming Language :: Python",
-        # "Programming Language :: Python :: 3",
+        'Programming Language :: Python :: 2.7',
+        "Programming Language :: Python :: 3",
+        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         "Topic :: Software Development :: Libraries :: Python Modules",
         'License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)',
     ],
