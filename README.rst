@@ -1,14 +1,14 @@
 Microdata plugin for Pelican
 ============================
 
-.. image:: https://secure.travis-ci.org/noirbizarre/pelican-microdata.png
-   :target: http://travis-ci.org/noirbizarre/pelican-microdata
+.. image:: https://secure.travis-ci.org/noirbizarre/pelican-microdata.svg?branch=master
+   :target: https://travis-ci.org/noirbizarre/pelican-microdata
 .. image:: https://coveralls.io/repos/noirbizarre/pelican-microdata/badge.png?branch=master
-    :target: https://coveralls.io/r/noirbizarre/pelican-microdata
-.. image:: https://pypip.in/v/pelican-microdata/badge.png
-    :target: https://crate.io/packages/pelican-microdata
-.. image:: https://pypip.in/d/pelican-microdata/badge.png
-    :target: https://crate.io/packages/pelican-microdata
+    :target: https://coveralls.io/r/noirbizarre/pelican-microdata?branch=master
+.. image:: https://img.shields.io/pypi/l/pelican-microdata.svg
+    :target: https://pypi.python.org/pypi/pelican-microdata
+.. image:: https://img.shields.io/pypi/pyversions/pelican-microdata.svg
+    :target: https://pypi.python.org/pypi/pelican-microdata
 
 `Microdata`_ semantic markups support for `Pelican`_ static blog generator.
 

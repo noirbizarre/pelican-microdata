@@ -1,38 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import io
-import re
+
 from setuptools import setup, find_packages
 
 
-PYPI_RST_FILTERS = (
-    # Replace code-blocks
-    (r'\.\.\s? code-block::\s*(\w|\+)+',  '::'),
-    # Remove travis ci badge
-    (r'.*travis-ci\.org/.*', ''),
-    # Remove pypip.in badges
-    (r'.*pypip\.in/.*', ''),
-    (r'.*crate\.io/.*', ''),
-    (r'.*coveralls\.io/.*', ''),
-)
-
-
-def rst(filename):
-    '''
-    Load rst file and sanitize it for PyPI.
-    Remove unsupported github tags:
-     - code-block directive
-     - travis ci build badge
-    '''
-    content = io.open(filename).read()
-    for regex, replacement in PYPI_RST_FILTERS:
-        content = re.sub(regex, replacement, content)
-    return content
-
-
 long_description = '\n'.join((
-    rst('README.rst'),
-    rst('CHANGELOG.rst'),
+    io.open('README.rst').read(),
+    io.open('CHANGELOG.rst').read(),
     ''
 ))
 
