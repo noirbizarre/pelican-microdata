@@ -21,12 +21,6 @@ Install the plugin via ``pip``:
 
     ~$ pip install pelican-microdata
 
-Or via ``easy_install``:
-
-.. code-block:: bash
-
-    ~$ easy_install pelican-microdata
-
 
 Usage
 -----
@@ -49,21 +43,21 @@ Microdata plugin provides two directives:
 
 - ``itemscope``, a block directive allowing to declare an itemscope block:
 
-    .. code-block:: ReST
+  .. code-block:: ReST
 
-        .. itemscope:: <Schema type>
-            :tag: element type (default: div)
-            :itemprop: optionnal itemprop attribute
-            :compact: optionnal
+      .. itemscope:: <Schema type>
+          :tag: element type (default: div)
+          :itemprop: optionnal itemprop attribute
+          :compact: optionnal
 
-            Nested content
+          Nested content
 
 - ``itemprop``, an inline directive/role allowing to annotate some text with an itemprop attribute.
 
-    .. code-block:: ReST
+  .. code-block:: ReST
 
-        :itemprop:`Displayed text <itemprop name>`
-        :itemprop:`Displayed text <itemprop name:http://some.url/>`
+      :itemprop:`Displayed text <itemprop name>`
+      :itemprop:`Displayed text <itemprop name:http://some.url/>`
 
 
 Example
