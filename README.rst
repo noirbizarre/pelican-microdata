@@ -1,10 +1,10 @@
 Microdata plugin for Pelican
 ============================
 
-.. image:: https://secure.travis-ci.org/noirbizarre/pelican-microdata.svg?branch=master
+.. image:: https://secure.travis-ci.org/noirbizarre/pelican-microdata.svg?tag=0.3.0
    :target: https://travis-ci.org/noirbizarre/pelican-microdata
-.. image:: https://coveralls.io/repos/noirbizarre/pelican-microdata/badge.svg?branch=master
-    :target: https://coveralls.io/r/noirbizarre/pelican-microdata?branch=master
+.. image:: https://coveralls.io/repos/noirbizarre/pelican-microdata/badge.svg?tag=0.3.0
+    :target: https://coveralls.io/r/noirbizarre/pelican-microdata?tag=0.3.0
 .. image:: https://img.shields.io/pypi/l/pelican-microdata.svg
     :target: https://pypi.python.org/pypi/pelican-microdata
 .. image:: https://img.shields.io/pypi/pyversions/pelican-microdata.svg
