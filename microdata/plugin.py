@@ -57,12 +57,10 @@ import six
 from docutils import nodes
 from docutils.parsers.rst import directives, Directive, roles
 from pelican.readers import PelicanHTMLTranslator
+from pelican.signals import initialized
 
-import pelican
-if pelican.settings.get_settings_from_file("pelicanconf.py").get("MICRODATA_VOCABULARY"):
-    MICRODATA_VOCABULARY_PREFIX = pelican.settings.get_settings_from_file("pelicanconf.py").get("MICRODATA_VOCABULARY")
-else:
-    MICRODATA_VOCABULARY_PREFIX = "http://schema.org"
+DEFAULT_PREFIX = "http://schema.org"
+MICRODATA_VOCABULARY_PREFIX = DEFAULT_PREFIX
 
 RE_ROLE = re.compile(r'(?P<value>.+?)\s*\<(?P<name>.+)\>')
 
@@ -153,6 +151,11 @@ def as_method(func):
     return six.create_unbound_method(func, PelicanHTMLTranslator)
 
 
+def set_vocabulary(pelican):
+    global MICRODATA_VOCABULARY_PREFIX
+    MICRODATA_VOCABULARY_PREFIX = pelican.settings.get('MICRODATA_VOCABULARY', DEFAULT_PREFIX)
+
+
 def register():
     directives.register_directive('itemscope', ItemScopeDirective)
     roles.register_canonical_role('itemprop', itemprop_role)
@@ -165,3 +168,6 @@ def register():
     # handle compact parameter
     # TODO: find a cleaner way to handle this case
     PelicanHTMLTranslator.visit_paragraph = as_method(visit_paragraph)
+
+    # Fetch settings on initialized
+    initialized.connect(set_vocabulary)

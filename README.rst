@@ -62,7 +62,11 @@ Microdata plugin provides two directives:
 Settings
 ~~~~~~~~
 
-You can define a vocabulary to use.
+You can define a vocabulary to use with the ``MICRODATA_VOCABULARY`` setting.
+
+.. code-block:: python
+
+    MICRODATA_VOCABULARY = 'http://data-vocabulary.org'
 
 If not set, `schema.org <http://schema.org>` is the default value.
 
@@ -88,7 +92,7 @@ will result in:
 
 .. code-block:: html
 
-    <p itemscope itemtype="http://data-vocabulary.org/Person">
+    <p itemscope itemtype="http://schema.org/Person">
         My name is <span itemprop="name">Bob Smith</span>
         but people call me <span itemprop="nickname">Smithy</span>.
         Here is my home page:
