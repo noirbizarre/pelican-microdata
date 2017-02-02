@@ -59,6 +59,12 @@ Microdata plugin provides two directives:
       :itemprop:`Displayed text <itemprop name>`
       :itemprop:`Displayed text <itemprop name:http://some.url/>`
 
+Settings
+~~~~~~~~
+
+You can define a vocabulary to use.
+
+If not set, `schema.org <http://schema.org>` is the default value.
 
 Example
 ~~~~~~~
@@ -67,7 +73,7 @@ This reStructuredText document:
 
 .. code-block:: ReST
 
-    .. itemscope: Person
+    .. itemscope:: Person
         :tag: p
 
         My name is :itemprop:`Bob Smith <name>`

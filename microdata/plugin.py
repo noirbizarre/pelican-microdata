@@ -39,7 +39,7 @@ will result in:
 
 .. code-block:: html
 
-    <p itemscope itemtype="http://data-vocabulary.org/Person">
+    <p itemscope itemtype="http://schema.org/Person">
         My name is <span itemprop="name">Bob Smith</span>
         but people call me <span itemprop="nickname">Smithy</span>.
         Here is my home page:
@@ -58,6 +58,11 @@ from docutils import nodes
 from docutils.parsers.rst import directives, Directive, roles
 from pelican.readers import PelicanHTMLTranslator
 
+import pelican
+if pelican.settings.get_settings_from_file("pelicanconf.py").get("MICRODATA_VOCABULARY"):
+    MICRODATA_VOCABULARY_PREFIX = pelican.settings.get_settings_from_file("pelicanconf.py").get("MICRODATA_VOCABULARY")
+else:
+    MICRODATA_VOCABULARY_PREFIX = "http://schema.org"
 
 RE_ROLE = re.compile(r'(?P<value>.+?)\s*\<(?P<name>.+)\>')
 
@@ -83,7 +88,7 @@ class ItemScope(nodes.Element):
     def __init__(self, tagname, itemtype, itemprop=None, compact=False):
         kwargs = {
             'itemscope': None,
-            'itemtype': "http://data-vocabulary.org/%s" % itemtype,
+            'itemtype': "%s/%s" % (MICRODATA_VOCABULARY_PREFIX, itemtype),
         }
         if itemprop:
             kwargs['itemprop'] = itemprop
