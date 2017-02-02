@@ -1,0 +1,29 @@
+[bumpr]
+file = microdata/__init__.py
+vcs = git
+commit = true
+tag = true
+push = true
+tests = tox
+publish =
+    python setup.py bdist_wheel upload
+clean =
+    rm -fr build dist **/__pycache__
+files =
+    README.rst
+
+[bump]
+unsuffix = true
+
+[prepare]
+part = patch
+suffix = dev
+
+[changelog]
+file = CHANGELOG.rst
+bump = {version} ({date:%Y-%m-%d})
+prepare = Current
+
+[replace]
+dev = ?branch=master
+stable = ?tag={version}
