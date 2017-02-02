@@ -9,7 +9,7 @@ Current
 0.3.0 (2017-02-02)
 ------------------
 
-- Support for Pelican 2.7 and Python 3.3+
+- Support for Pelican 3.7 and Python 3.3+
 - Drop support for Python 3.2
 - Use schema.org as default vocabulary prefix
 - Make vocabulary prefix configurable with ``MICRODATA_VOCABULARY``
